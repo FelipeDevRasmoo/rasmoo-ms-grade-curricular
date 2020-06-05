@@ -9,9 +9,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/materia")
 public class MateriaController {
-
+	
 	@GetMapping("/")
-	public ResponseEntity<String> helloWorldRest() {
-		return ResponseEntity.status(HttpStatus.OK).body("Olá mundo Rest");
+	public ResponseEntity<String> helloWorldRest(){
+		return ResponseEntity.status(HttpStatus.OK).body("Olá mundo REST");
 	}
+	
 }

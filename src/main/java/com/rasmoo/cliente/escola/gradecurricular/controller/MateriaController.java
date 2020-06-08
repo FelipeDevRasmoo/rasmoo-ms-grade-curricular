@@ -55,7 +55,7 @@ public class MateriaController {
 			return ResponseEntity.status(HttpStatus.OK).body(true);
 			
 		}catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.OK).body(true);
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(false);
 		}
 	}
 	
@@ -82,7 +82,7 @@ public class MateriaController {
 			return ResponseEntity.status(HttpStatus.OK).body(true);
 			
 		}catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.OK).body(true);
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(false);
 		}
 	}
 

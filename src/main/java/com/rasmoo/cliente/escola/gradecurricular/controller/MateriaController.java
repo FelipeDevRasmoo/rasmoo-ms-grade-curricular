@@ -21,10 +21,6 @@ import com.rasmoo.cliente.escola.gradecurricular.service.IMateriaService;
 @RequestMapping("/materia")
 public class MateriaController {
 
-	/*
-	 * RETIRADO O MATERIAREPOSITORY
-	 */
-
 	@Autowired
 	private IMateriaService materiaService;
 
@@ -40,21 +36,17 @@ public class MateriaController {
 
 	@PostMapping
 	public ResponseEntity<Boolean> cadastrarMateria(@RequestBody MateriaEntity materia) {
-		return ResponseEntity.status(HttpStatus.OK).body(this.materiaService.cadastrar(materia));
+		return ResponseEntity.status(HttpStatus.CREATED).body(this.materiaService.cadastrar(materia));
 	}
 
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Boolean> excluirMateria(@PathVariable Long id) {
-
 		return ResponseEntity.status(HttpStatus.OK).body(this.materiaService.excluir(id));
-
 	}
 
 	@PutMapping
 	public ResponseEntity<Boolean> atualizarMateria(@RequestBody MateriaEntity materia) {
-
 		return ResponseEntity.status(HttpStatus.OK).body(this.materiaService.atualizar(materia));
-
 	}
 
 }

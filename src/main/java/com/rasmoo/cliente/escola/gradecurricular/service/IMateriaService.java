@@ -2,6 +2,7 @@ package com.rasmoo.cliente.escola.gradecurricular.service;
 
 import java.util.List;
 
+import com.rasmoo.cliente.escola.gradecurricular.dto.MateriaDto;
 import com.rasmoo.cliente.escola.gradecurricular.entity.MateriaEntity;
 
 public interface IMateriaService {
@@ -23,5 +24,5 @@ public interface IMateriaService {
 	/*
 	 * CADASTRAR uma matéria.  
 	 */
-	public Boolean cadastrar(final MateriaEntity materia);
+	public Boolean cadastrar(final MateriaDto materia);
 }

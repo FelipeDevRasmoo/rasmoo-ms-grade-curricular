@@ -4,10 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import com.rasmoo.cliente.escola.gradecurricular.dto.MateriaDto;
 import com.rasmoo.cliente.escola.gradecurricular.entity.MateriaEntity;
 import com.rasmoo.cliente.escola.gradecurricular.exception.MateriaException;
 import com.rasmoo.cliente.escola.gradecurricular.repository.IMateriaRepository;
@@ -21,20 +23,10 @@ public class MateriaService implements IMateriaService {
 	@Override
 	public Boolean atualizar(MateriaEntity materia) {
 		try {
-			
-			/*
-			 * Invocamos o método consultar, que irá fazer a verificação da existência o obj.
-			 * Caso não haja, retornará uma exceção.
-			 * */
-			
-			MateriaEntity materiaEntityAtualizada = this.consultar(materia.getId());
+			ModelMapper mapper = new ModelMapper();
+			this.consultar(materia.getId());
 
-			// atualizamos todos os valores
-			materiaEntityAtualizada.setNome(materia.getNome());
-			materiaEntityAtualizada.setCodigo(materia.getCodigo());
-			materiaEntityAtualizada.setHoras(materia.getHoras());
-			materiaEntityAtualizada.setNome(materia.getNome());
-			materiaEntityAtualizada.setFrequencia(materia.getFrequencia());
+			MateriaEntity materiaEntityAtualizada = mapper.map(materia,MateriaEntity.class);
 
 			// salvamos as alteracoes
 			this.materiaRepository.save(materiaEntityAtualizada);
@@ -87,9 +79,11 @@ public class MateriaService implements IMateriaService {
 	}
 
 	@Override
-	public Boolean cadastrar(MateriaEntity materia) {
+	public Boolean cadastrar(MateriaDto materia) {
 		try {
-			this.materiaRepository.save(materia);
+			ModelMapper mapper = new ModelMapper();
+			MateriaEntity materiaEnt = mapper.map(materia,MateriaEntity.class);
+			this.materiaRepository.save(materiaEnt);
 			return true;
 		} catch (Exception e) {
 			return false;

@@ -22,28 +22,29 @@ public class MateriaService implements IMateriaService {
 	public Boolean atualizar(MateriaEntity materia) {
 		try {
 			
-			Optional<MateriaEntity> materiaOptional = this.materiaRepository.findById(materia.getId());
+			/*
+			 * Invocamos o método consultar, que irá fazer a verificação da existência o obj.
+			 * Caso não haja, retornará uma exceção.
+			 * */
 			
-			if(materiaOptional.isPresent()) {
-				
-				MateriaEntity materiaEntityAtualizada = materiaOptional.get();
-				
-				// atualizamos todos os valores
-				materiaEntityAtualizada.setNome(materia.getNome());
-				materiaEntityAtualizada.setCodigo(materia.getCodigo());
-				materiaEntityAtualizada.setHoras(materia.getHoras());
-				materiaEntityAtualizada.setNome(materia.getNome());
-				materiaEntityAtualizada.setFrequencia(materia.getFrequencia());
-				
-				// salvamos as alteracoes
-				this.materiaRepository.save(materiaEntityAtualizada);
-				
-				return true;
-				
-			}
-			return false;
+			MateriaEntity materiaEntityAtualizada = this.consultar(materia.getId());
+
+			// atualizamos todos os valores
+			materiaEntityAtualizada.setNome(materia.getNome());
+			materiaEntityAtualizada.setCodigo(materia.getCodigo());
+			materiaEntityAtualizada.setHoras(materia.getHoras());
+			materiaEntityAtualizada.setNome(materia.getNome());
+			materiaEntityAtualizada.setFrequencia(materia.getFrequencia());
+
+			// salvamos as alteracoes
+			this.materiaRepository.save(materiaEntityAtualizada);
+
+			return Boolean.TRUE;
+
+		}catch (MateriaException m) {
+			throw m;
 		} catch (Exception e) {
-			return false;
+			throw e;
 		}
 	}
 
@@ -53,7 +54,7 @@ public class MateriaService implements IMateriaService {
 			this.consultar(id);
 			this.materiaRepository.deleteById(id);
 			return true;
-		}catch (MateriaException m) {
+		} catch (MateriaException m) {
 			throw m;
 		} catch (Exception e) {
 			throw e;
@@ -68,10 +69,11 @@ public class MateriaService implements IMateriaService {
 				return materiaOptional.get();
 			}
 			throw new MateriaException("Matéria não encontrada", HttpStatus.NOT_FOUND);
-		}catch (MateriaException m) {
+		} catch (MateriaException m) {
 			throw m;
-		}catch (Exception e) {
-			throw new MateriaException("Erro interno identificado. Contate o suporte", HttpStatus.INTERNAL_SERVER_ERROR);
+		} catch (Exception e) {
+			throw new MateriaException("Erro interno identificado. Contate o suporte",
+					HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 

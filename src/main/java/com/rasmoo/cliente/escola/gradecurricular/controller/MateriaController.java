@@ -26,14 +26,18 @@ public class MateriaController {
 
 	@Autowired
 	private IMateriaService materiaService;
-
+	
+	/*
+	 * ALTERACAO NOS METODOS DE CONSULTA
+	 * */
+	
 	@GetMapping
-	public ResponseEntity<List<MateriaEntity>> listarMaterias() {
+	public ResponseEntity<List<MateriaDto>> listarMaterias() {
 		return ResponseEntity.status(HttpStatus.OK).body(this.materiaService.listar());
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<MateriaEntity> consultaMateria(@PathVariable Long id) {
+	public ResponseEntity<MateriaDto> consultaMateria(@PathVariable Long id) {
 		return ResponseEntity.status(HttpStatus.OK).body(this.materiaService.consultar(id));
 	}
 

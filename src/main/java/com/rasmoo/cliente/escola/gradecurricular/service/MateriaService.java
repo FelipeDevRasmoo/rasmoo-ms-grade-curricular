@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -23,9 +24,8 @@ public class MateriaService implements IMateriaService {
 	@Override
 	public Boolean atualizar(MateriaEntity materia) {
 		try {
-			ModelMapper mapper = new ModelMapper();
 			this.consultar(materia.getId());
-
+			ModelMapper mapper =  new ModelMapper();
 			MateriaEntity materiaEntityAtualizada = mapper.map(materia,MateriaEntity.class);
 
 			// salvamos as alteracoes
@@ -54,11 +54,12 @@ public class MateriaService implements IMateriaService {
 	}
 
 	@Override
-	public MateriaEntity consultar(Long id) {
+	public MateriaDto consultar(Long id) {
 		try {
+			ModelMapper mapper =  new ModelMapper();
 			Optional<MateriaEntity> materiaOptional = this.materiaRepository.findById(id);
 			if (materiaOptional.isPresent()) {
-				return materiaOptional.get();
+				return mapper.map(materiaOptional.get(),MateriaDto.class);
 			}
 			throw new MateriaException("Matéria não encontrada", HttpStatus.NOT_FOUND);
 		} catch (MateriaException m) {
@@ -70,9 +71,10 @@ public class MateriaService implements IMateriaService {
 	}
 
 	@Override
-	public List<MateriaEntity> listar() {
+	public List<MateriaDto> listar() {
 		try {
-			return this.materiaRepository.findAll();
+			ModelMapper mapper =  new ModelMapper();
+			return mapper.map(this.materiaRepository.findAll(),new TypeToken<List<MateriaDto>>() {}.getType());
 		} catch (Exception e) {
 			return new ArrayList<>();
 		}
@@ -81,7 +83,7 @@ public class MateriaService implements IMateriaService {
 	@Override
 	public Boolean cadastrar(MateriaDto materia) {
 		try {
-			ModelMapper mapper = new ModelMapper();
+			ModelMapper mapper =  new ModelMapper();
 			MateriaEntity materiaEnt = mapper.map(materia,MateriaEntity.class);
 			this.materiaRepository.save(materiaEnt);
 			return true;

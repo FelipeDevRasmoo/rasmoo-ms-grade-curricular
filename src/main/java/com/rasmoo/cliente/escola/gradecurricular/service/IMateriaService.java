@@ -14,12 +14,12 @@ public interface IMateriaService {
 	/*
 	 * LISTAR todas matérias. 
 	 */
-	public List<MateriaEntity> listar();
+	public List<MateriaDto> listar();
 	
 	/*
 	 * CONSULTA uma matéria a partir do ID.  
 	 */
-	public MateriaEntity consultar(final Long id);
+	public MateriaDto consultar(final Long id);
 	
 	/*
 	 * CADASTRAR uma matéria.  

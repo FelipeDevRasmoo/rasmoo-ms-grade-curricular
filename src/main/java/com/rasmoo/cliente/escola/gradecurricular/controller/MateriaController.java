@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.rasmoo.cliente.escola.gradecurricular.dto.MateriaDto;
-import com.rasmoo.cliente.escola.gradecurricular.entity.MateriaEntity;
 import com.rasmoo.cliente.escola.gradecurricular.service.IMateriaService;
 
 @RestController
@@ -52,7 +51,7 @@ public class MateriaController {
 	}
 
 	@PutMapping
-	public ResponseEntity<Boolean> atualizarMateria(@RequestBody MateriaEntity materia) {
+	public ResponseEntity<Boolean> atualizarMateria(@RequestBody MateriaDto materia) {
 		return ResponseEntity.status(HttpStatus.OK).body(this.materiaService.atualizar(materia));
 	}
 

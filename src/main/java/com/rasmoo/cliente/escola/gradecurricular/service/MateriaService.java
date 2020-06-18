@@ -22,13 +22,12 @@ public class MateriaService implements IMateriaService {
 	private IMateriaRepository materiaRepository;
 
 	@Override
-	public Boolean atualizar(MateriaEntity materia) {
+	public Boolean atualizar(MateriaDto materia) {
 		try {
 			this.consultar(materia.getId());
 			ModelMapper mapper =  new ModelMapper();
 			MateriaEntity materiaEntityAtualizada = mapper.map(materia,MateriaEntity.class);
 
-			// salvamos as alteracoes
 			this.materiaRepository.save(materiaEntityAtualizada);
 
 			return Boolean.TRUE;

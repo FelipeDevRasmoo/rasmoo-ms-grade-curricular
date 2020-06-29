@@ -8,9 +8,11 @@ import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CachePut;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import com.rasmoo.cliente.escola.gradecurricular.controller.MateriaController;
 import com.rasmoo.cliente.escola.gradecurricular.dto.MateriaDto;
 import com.rasmoo.cliente.escola.gradecurricular.entity.MateriaEntity;
 import com.rasmoo.cliente.escola.gradecurricular.exception.MateriaException;
@@ -35,13 +37,13 @@ public class MateriaService implements IMateriaService {
 	public Boolean atualizar(MateriaDto materia) {
 		try {
 			this.consultar(materia.getId());
-			MateriaEntity materiaEntityAtualizada = this.mapper.map(materia,MateriaEntity.class);
+			MateriaEntity materiaEntityAtualizada = this.mapper.map(materia, MateriaEntity.class);
 
 			this.materiaRepository.save(materiaEntityAtualizada);
 
 			return Boolean.TRUE;
 
-		}catch (MateriaException m) {
+		} catch (MateriaException m) {
 			throw m;
 		} catch (Exception e) {
 			throw e;
@@ -76,18 +78,29 @@ public class MateriaService implements IMateriaService {
 			throw new MateriaException(MENSAGEM_ERRO, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-	
+
 	@CachePut(unless = "#result.size()<3")
 	@Override
 	public List<MateriaDto> listar() {
 		try {
-			return this.mapper.map(this.materiaRepository.findAll(), new TypeToken<List<MateriaDto>>() {
-			}.getType());
+
+			List<MateriaDto> materiaDto = this.mapper.map(this.materiaRepository.findAll(),
+					new TypeToken<List<MateriaDto>>() {
+					}.getType());
+
+			materiaDto.forEach(materia -> {
+				materia.add(WebMvcLinkBuilder
+						.linkTo(WebMvcLinkBuilder.methodOn(MateriaController.class).consultaMateria(materia.getId()))
+						.withSelfRel());
+			});
+
+			return materiaDto;
+
 		} catch (Exception e) {
 			throw new MateriaException(MENSAGEM_ERRO, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-	
+
 	@Override
 	public Boolean cadastrar(MateriaDto materia) {
 		try {

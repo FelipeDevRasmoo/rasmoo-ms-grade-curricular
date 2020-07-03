@@ -30,7 +30,6 @@ public class ResourceHandler {
 		response.setStatusCode(HttpStatus.BAD_REQUEST.value());
 		response.setData(erros);
 		
-		
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
 		
 	}

@@ -116,5 +116,17 @@ public class MateriaController {
 				.withSelfRel());
 		return ResponseEntity.status(HttpStatus.OK).body(response);
 	}
+	
+	@GetMapping("/frequencia/{frequencia}")
+	public ResponseEntity<Response<List<MateriaDto>>> consultaMateriaPorFrequencia(@PathVariable int frequencia) {
+		Response<List<MateriaDto>> response = new Response<>();
+		List<MateriaDto> materia = this.materiaService.listarPorFrequencia(frequencia);
+		response.setData(materia);
+		response.setStatusCode(HttpStatus.OK.value());
+		response.add(WebMvcLinkBuilder
+				.linkTo(WebMvcLinkBuilder.methodOn(MateriaController.class).consultaMateriaPorFrequencia(frequencia))
+				.withSelfRel());
+		return ResponseEntity.status(HttpStatus.OK).body(response);
+	}
 
 }

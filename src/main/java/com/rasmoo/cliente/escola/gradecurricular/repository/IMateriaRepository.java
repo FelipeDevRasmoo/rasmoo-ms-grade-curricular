@@ -13,4 +13,7 @@ import com.rasmoo.cliente.escola.gradecurricular.entity.MateriaEntity;
 public interface IMateriaRepository extends JpaRepository<MateriaEntity, Long>{
 	@Query("select m from MateriaEntity m where m.horas >= :horaMinima")
 	public List<MateriaEntity> findByHoraMinima(@Param("horaMinima")int horaMinima);
+	
+	@Query("select m from MateriaEntity m where m.frequencia =:frequencia")
+	public List<MateriaEntity> findByFrequencia(@Param("frequencia")int frequencia);
 }

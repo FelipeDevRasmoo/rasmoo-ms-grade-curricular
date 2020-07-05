@@ -27,4 +27,6 @@ public interface IMateriaService {
 	
 	public List<MateriaDto> listarPorHorarioMinimo(int horaMinima);
 	
+	public List<MateriaDto> listarPorFrequencia(int frequencia);
+	
 }

@@ -1,8 +1,10 @@
 package com.rasmoo.cliente.escola.gradecurricular.constante;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
+@AllArgsConstructor
 public enum HyperLinkConstant {
 	
 	ATUALIZAR("UPDATE"),
@@ -11,9 +13,5 @@ public enum HyperLinkConstant {
 	CONSULTAR("GET");
 	
 	private final String valor;
-	
-	private HyperLinkConstant(String valor) {
-		this.valor = valor;
-	}
 	
 }

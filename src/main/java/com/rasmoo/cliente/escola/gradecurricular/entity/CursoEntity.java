@@ -9,7 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -43,7 +43,7 @@ private static final long serialVersionUID = -5115709874529054925L;
 	@Column(name = "cod")
 	private String codigo;
 	
-	@OneToMany(fetch = FetchType.LAZY)
+	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinColumn(name="materia_id")
 	private List<MateriaEntity> materias;
 }

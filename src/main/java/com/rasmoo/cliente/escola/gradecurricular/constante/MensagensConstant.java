@@ -5,7 +5,7 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public enum Mensagens {
+public enum MensagensConstant {
 	
 	ERRO_GENERICO("Erro interno identificado. Contate o suporte."),
 	ERRO_MATERIA_NAO_ENCONTRADA("Matéria não encontrada."),

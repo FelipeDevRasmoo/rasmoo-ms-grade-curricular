@@ -9,7 +9,7 @@ import org.springframework.cache.annotation.CachePut;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
-import com.rasmoo.cliente.escola.gradecurricular.constante.Mensagens;
+import com.rasmoo.cliente.escola.gradecurricular.constante.MensagensConstant;
 import com.rasmoo.cliente.escola.gradecurricular.entity.CursoEntity;
 import com.rasmoo.cliente.escola.gradecurricular.entity.MateriaEntity;
 import com.rasmoo.cliente.escola.gradecurricular.exception.CursoException;
@@ -39,14 +39,14 @@ public class CursoService implements ICursoService {
 			 */
 
 			if (cursoModel.getId() != null) {
-				throw new CursoException(Mensagens.ERRO_ID_INFORMADO.getValor(), HttpStatus.BAD_REQUEST);
+				throw new CursoException(MensagensConstant.ERRO_ID_INFORMADO.getValor(), HttpStatus.BAD_REQUEST);
 			}
 			
 			/*
 			 * Não permite fazer cadastro de cursos com mesmos códigos.
 			 */
 			if (this.cursoRepository.findCursoByCodigo(cursoModel.getCodCurso()) != null) {
-				throw new CursoException(Mensagens.ERRO_CURSO_CADASTRADO_ANTERIORMENTE.getValor(), HttpStatus.BAD_REQUEST);
+				throw new CursoException(MensagensConstant.ERRO_CURSO_CADASTRADO_ANTERIORMENTE.getValor(), HttpStatus.BAD_REQUEST);
 			}
 			return this.cadastrarOuAtualizar(cursoModel);
 
@@ -54,7 +54,7 @@ public class CursoService implements ICursoService {
 			throw c;
 		}
 		catch (Exception e) {
-			throw new CursoException(Mensagens.ERRO_GENERICO.getValor(), HttpStatus.INTERNAL_SERVER_ERROR);
+			throw new CursoException(MensagensConstant.ERRO_GENERICO.getValor(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 
@@ -78,14 +78,14 @@ public class CursoService implements ICursoService {
 			CursoEntity curso = this.cursoRepository.findCursoByCodigo(codCurso);
 
 			if (curso == null) {
-				throw new CursoException(Mensagens.ERRO_CURSO_NAO_ENCONTRADO.getValor(), HttpStatus.NOT_FOUND);
+				throw new CursoException(MensagensConstant.ERRO_CURSO_NAO_ENCONTRADO.getValor(), HttpStatus.NOT_FOUND);
 			}
 			return curso;
 
 		} catch (CursoException c) {
 			throw c;
 		} catch (Exception e) {
-			throw new CursoException(Mensagens.ERRO_GENERICO.getValor(), HttpStatus.INTERNAL_SERVER_ERROR);
+			throw new CursoException(MensagensConstant.ERRO_GENERICO.getValor(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 
@@ -102,11 +102,11 @@ public class CursoService implements ICursoService {
 				this.cursoRepository.deleteById(cursoId);
 				return Boolean.TRUE;
 			}
-			throw new CursoException(Mensagens.ERRO_CURSO_NAO_ENCONTRADO.getValor(), HttpStatus.NOT_FOUND);
+			throw new CursoException(MensagensConstant.ERRO_CURSO_NAO_ENCONTRADO.getValor(), HttpStatus.NOT_FOUND);
 		}catch (CursoException c) {
 			throw c;
 		}catch (Exception e) {
-			throw new CursoException(Mensagens.ERRO_GENERICO.getValor(), HttpStatus.INTERNAL_SERVER_ERROR);
+			throw new CursoException(MensagensConstant.ERRO_GENERICO.getValor(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 

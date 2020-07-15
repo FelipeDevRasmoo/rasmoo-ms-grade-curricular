@@ -2,7 +2,7 @@ language: java
 jdk:
 - openjdk8
 deploy:
-  provider: heroku:git
+  provider: heroku
   api_key:
     secure: HfwgCnEPSHKItBJKkrgPR8gqdskairLRk/WcnuQw2yqrpspEsBlLvWnCOMTS9+cBG7L/jCe9yM30Zx7hTb3tRYLtlSOv+cRXze637CzGNfv1ndHl9mLvfHMWyPP3/A/kIF6+1eQxAzTrjPonkzBjwetafQE7YAJMWksSMDd9Z5KOam94CwIdQYVOJj4oevGckRCBvqFEiAYgk+jL1dmzbSvqW3O0Mg1AmgJZ7lYtdO2EEVyTKafx8t2FQV8Ytnpg7J1iINoJjoE3y+K5rsgIRMjl6l+dSKVCmKr6tz/SNbaTUiURe5KZ7me/1tZQGp+YIWEUvhvWWuDZIpu4J+vWBOzBm+yk3KV7TdstgAwgnhyZJCzbwvnOHD9z7dn/vmIo2++leS/x+kRA4jIz2JXML0mKBXc4zq7zUbfE8rjP17xL1egw17zF2Tx/Fot6sCPFNEyGO2ZwdUw2g3o+RriDtYbWBaXtgm6yxllfjNL6d9yzHtJsM/8oY3JyGgV7mFuiMAWuEVwIHbqdjBp6Q0/7S+8W7mro0ckpztZ3sSOScWHVyyhNhMyaOhDOXhYyI0HvWbLOGdzet8+WdurTo2Mpv6cV+UmNotNimK2xnUh6hPxxs/LPMOmyxEFLYlPKsmVF5es7inPFyPOqXd2BUUinyJScrhcJvHp4PmbXjoIiaPY=
   on:

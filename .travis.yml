@@ -1,0 +1,9 @@
+language: java
+jdk:
+- openjdk8
+deploy:
+  provider: heroku:git
+  api_key:
+    secure: KTg699XaQYVrvodL02lRs4FXL2Gtw3DsbDwsUn6qZiQaT9kefTuzzmh08h/+7lmJBL0WBCBGF/hA+mKV8exVS+EoKaRYp8mxCF0WLbh1hhTOQY8lPemFLLku+gi2jq+21vay657iAXcqG/Mh9dHhBMQ2hzpaaCRdzH+H93amVMnT/bdX0R8jve+6VAZGdb0XE+fR0Xc4NQtT5La7m0fR33lRfSqT9Jbk6fVQLaHKLD6A2faQtGyW8NyUPKt8Gtcr5SctoJIpUrc0qMy5p5kJ/b4tY87mIFbua4jaMrfx0R+k16ukIe2p0iK9Y9vRzVCHF3CgihCeiGMtmUVmoLHD4rKmcEIs0gUB5Ow7FiCE8VisnRpU7yOVPwHPwW3RBGJctUTs68+MwbKXQa7ujT4iSLmRD6kLXW+TORfxQyS2zdXz1KM0bFkSfG+GkAivlgh02WqQIT3R7IlbU7khlLdmj+YbMeuNG1rPXFAs9CJ/MUcN98Y6Vx1F1qKbi8b7dJfaa/siL80IU+1WuTKt5ngwvIP7qwHsQts8d2BmJYjkGdU/SHA2L+3HFvfsNDkJk23qWjJhm0xmbZpmXvSUP+xSMhV7VF7P9iZcSUQVJygUbTqFz8yPwJnpWM6Cp2Tnu6Bk9NF71EnbKxV4XsoE1PQSgK5MoTYDVk15cGLf2A3BHvk=
+  on:
+    all_branches: true

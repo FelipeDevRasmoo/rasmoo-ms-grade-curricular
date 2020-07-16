@@ -47,7 +47,7 @@ public class MateriaController {
 		response.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(MateriaController.class).listarMaterias())
 				.withSelfRel());
 		return ResponseEntity.status(HttpStatus.OK).body(response);
-	}
+	} 
 
 	@GetMapping("/{id}")
 	public ResponseEntity<Response<MateriaDto>> consultaMateria(@PathVariable Long id) {

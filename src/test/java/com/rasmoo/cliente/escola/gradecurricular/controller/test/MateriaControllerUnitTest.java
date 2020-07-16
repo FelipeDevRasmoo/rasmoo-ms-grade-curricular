@@ -6,13 +6,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.Before;
-import org.junit.FixMethodOrder;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.runners.MethodSorters;
+import org.junit.platform.runner.JUnitPlatform;
+import org.junit.runner.RunWith;
 import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -29,35 +28,33 @@ import com.rasmoo.cliente.escola.gradecurricular.service.IMateriaService;
 
 @ExtendWith(MockitoExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@FixMethodOrder(MethodSorters.NAME_ASCENDING)
+@RunWith(JUnitPlatform.class)
 public class MateriaControllerUnitTest {
-	
-	//responsavel por settar o valor da porta
+
 	@LocalServerPort
 	private int port;
-	
+
 	@MockBean
 	private IMateriaService materiaService;
-	
+
 	@Autowired
 	private TestRestTemplate restTemplate;
-	
-	@Before
-	public void init() {
-		MockitoAnnotations.initMocks(this);
+
+	@BeforeAll
+	public static void init() {
+
 	}
-	
-	
+
 	@Test
 	public void testListarMaterias() {
 		Mockito.when(this.materiaService.listar()).thenReturn(new ArrayList<MateriaDto>());
-		
-		ResponseEntity<Response<List<MateriaDto>>> materias = restTemplate
-				.exchange("http://localhost:"+this.port+"/materia/", HttpMethod.GET,null,
-						new ParameterizedTypeReference<Response<List<MateriaDto>>>() {
-						});
-		assertNotNull(materias);
+
+		ResponseEntity<Response<List<MateriaDto>>> materias = restTemplate.exchange(
+				"http://localhost:" + this.port + "/materia/", HttpMethod.GET, null,
+				new ParameterizedTypeReference<Response<List<MateriaDto>>>() {
+				});
+		assertNotNull(materias.getBody().getData());
 		assertEquals(200, materias.getBody().getStatusCode());
-						
 	}
+
 }

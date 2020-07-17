@@ -12,7 +12,7 @@ import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
-import com.rasmoo.cliente.escola.gradecurricular.constante.MensagensConstant;
+import com.rasmoo.cliente.escola.gradecurricular.constant.MensagensConstant;
 import com.rasmoo.cliente.escola.gradecurricular.controller.MateriaController;
 import com.rasmoo.cliente.escola.gradecurricular.dto.MateriaDto;
 import com.rasmoo.cliente.escola.gradecurricular.entity.MateriaEntity;
@@ -84,7 +84,7 @@ public class MateriaService implements IMateriaService {
 
 			materiaDto.forEach(materia -> 
 				materia.add(WebMvcLinkBuilder
-						.linkTo(WebMvcLinkBuilder.methodOn(MateriaController.class).consultaMateria(materia.getId()))
+						.linkTo(WebMvcLinkBuilder.methodOn(MateriaController.class).consultarMateria(materia.getId()))
 						.withSelfRel())
 			);
 

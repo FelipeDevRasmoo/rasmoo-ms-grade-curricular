@@ -9,7 +9,7 @@ import org.springframework.cache.annotation.CachePut;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
-import com.rasmoo.cliente.escola.gradecurricular.constante.MensagensConstant;
+import com.rasmoo.cliente.escola.gradecurricular.constant.MensagensConstant;
 import com.rasmoo.cliente.escola.gradecurricular.entity.CursoEntity;
 import com.rasmoo.cliente.escola.gradecurricular.entity.MateriaEntity;
 import com.rasmoo.cliente.escola.gradecurricular.exception.CursoException;

@@ -51,7 +51,7 @@ public class MateriaControllerUnitTest {
 		materiaDto.setCodigo("ILP");
 		materiaDto.setFrequencia(1);
 		materiaDto.setHoras(64);
-		materiaDto.setNome("INTRODUCAO A LINGUAGEM DE PROGRAMCAO");
+		materiaDto.setNome("INTRODUCAO A LINGUAGEM DE PROGRAMACAO");
 
 	}
 

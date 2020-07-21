@@ -61,7 +61,7 @@ public class CursoController {
 	 */
 
 	@GetMapping("/{codCurso}")
-	public ResponseEntity<Response<CursoEntity>> consultarCursoPorMateria(@PathVariable String codCurso) {
+	public ResponseEntity<Response<CursoEntity>> consultarCursoPorCodigo(@PathVariable String codCurso) {
 		Response<CursoEntity> response = new Response<>();
 		response.setData(this.cursoService.consultarPorCodigo(codCurso));
 		response.setStatusCode(HttpStatus.OK.value());

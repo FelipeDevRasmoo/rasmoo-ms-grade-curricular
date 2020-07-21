@@ -1,6 +1,7 @@
 package com.rasmoo.cliente.escola.gradecurricular.controller.test;
 
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;
@@ -80,7 +81,7 @@ public class MateriaControllerUnitTest {
 	}
 
 	@Test
-	public void testCadastrarMaterias() {
+	public void testCadastrarMateria() {
 		Mockito.when(this.materiaService.cadastrar(materiaDto)).thenReturn(Boolean.TRUE);
 
 		HttpEntity<MateriaDto> request = new HttpEntity<>(materiaDto);
@@ -89,12 +90,12 @@ public class MateriaControllerUnitTest {
 				"http://localhost:" + this.port + "/materia/", HttpMethod.POST, request,
 				new ParameterizedTypeReference<Response<Boolean>>() {
 				});
-		assertNotNull(materias.getBody().getData());
+		assertTrue(materias.getBody().getData());
 		assertEquals(201, materias.getBody().getStatusCode());
 	}
 
 	@Test
-	public void testAtualizarMaterias() {
+	public void testAtualizarMateria() {
 		Mockito.when(this.materiaService.atualizar(materiaDto)).thenReturn(Boolean.TRUE);
 
 		HttpEntity<MateriaDto> request = new HttpEntity<>(materiaDto);
@@ -103,19 +104,19 @@ public class MateriaControllerUnitTest {
 				"http://localhost:" + this.port + "/materia/", HttpMethod.PUT, request,
 				new ParameterizedTypeReference<Response<Boolean>>() {
 				});
-		assertNotNull(materias.getBody().getData());
+		assertTrue(materias.getBody().getData());
 		assertEquals(200, materias.getBody().getStatusCode());
 	}
 
 	@Test
-	public void testExcluitMaterias() {
+	public void testExcluirMateria() {
 		Mockito.when(this.materiaService.excluir(1L)).thenReturn(Boolean.TRUE);
 
 		ResponseEntity<Response<Boolean>> materias = restTemplate.exchange(
 				"http://localhost:" + this.port + "/materia/1", HttpMethod.DELETE, null,
 				new ParameterizedTypeReference<Response<Boolean>>() {
 				});
-		assertNotNull(materias.getBody().getData());
+		assertTrue(materias.getBody().getData());
 		assertEquals(200, materias.getBody().getStatusCode());
 	}
 

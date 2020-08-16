@@ -76,10 +76,12 @@ public class CursoService implements ICursoService {
 
 		try {
 			CursoEntity curso = this.cursoRepository.findCursoByCodigo(codCurso);
+			
 
 			if (curso == null) {
 				throw new CursoException(MensagensConstant.ERRO_CURSO_NAO_ENCONTRADO.getValor(), HttpStatus.NOT_FOUND);
 			}
+			
 			return curso;
 
 		} catch (CursoException c) {

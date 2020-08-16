@@ -160,6 +160,7 @@ public class CursoControllerIntegratedTest {
 		cursoModel.setCodCurso("CC");
 		cursoModel.setNome("Ciências da computação");
 		cursoModel.setMaterias(idListMat);
+		
 		HttpEntity<CursoModel> request = new HttpEntity<>(cursoModel);
 
 		ResponseEntity<Response<Boolean>> curso = restTemplate.exchange(this.montaUri(""), HttpMethod.POST, request,

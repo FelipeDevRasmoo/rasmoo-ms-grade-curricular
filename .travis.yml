@@ -1,4 +1,4 @@
-languagem: java
+language: java
 jdk: "-openjdk8"
 deploy:
   provider: heroku

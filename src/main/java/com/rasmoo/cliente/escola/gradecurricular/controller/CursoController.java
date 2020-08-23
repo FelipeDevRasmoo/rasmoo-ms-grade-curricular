@@ -42,7 +42,7 @@ public class CursoController {
 	
 	@ApiOperation(value = "Cadastrar um novo curso")
 	@ApiResponses(value = {
-			@ApiResponse(code = 201, message = "Entidade criada com sucesso"),
+			@ApiResponse(code = 201, message = "Curso criado com sucesso"),
 			@ApiResponse(code = 400, message = "Erro na requisição enviada pelo cliente"),
 			@ApiResponse(code = 500, message = "Erro interno no serviço"),
 	})

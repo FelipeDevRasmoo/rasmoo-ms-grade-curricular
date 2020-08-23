@@ -12,7 +12,7 @@ import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
-import com.rasmoo.cliente.escola.gradecurricular.constante.MensagensConstant;
+import com.rasmoo.cliente.escola.gradecurricular.constant.MensagensConstant;
 import com.rasmoo.cliente.escola.gradecurricular.controller.MateriaController;
 import com.rasmoo.cliente.escola.gradecurricular.dto.MateriaDto;
 import com.rasmoo.cliente.escola.gradecurricular.entity.MateriaEntity;
@@ -41,7 +41,7 @@ public class MateriaService implements IMateriaService {
 		} catch (MateriaException m) {
 			throw m;
 		} catch (Exception e) {
-			throw e;
+			throw new MateriaException(MensagensConstant.ERRO_GENERICO.getValor(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 
@@ -54,7 +54,7 @@ public class MateriaService implements IMateriaService {
 		} catch (MateriaException m) {
 			throw m;
 		} catch (Exception e) {
-			throw e;
+			throw new MateriaException(MensagensConstant.ERRO_GENERICO.getValor(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 
@@ -82,11 +82,9 @@ public class MateriaService implements IMateriaService {
 					new TypeToken<List<MateriaDto>>() {
 					}.getType());
 
-			materiaDto.forEach(materia -> 
-				materia.add(WebMvcLinkBuilder
-						.linkTo(WebMvcLinkBuilder.methodOn(MateriaController.class).consultaMateria(materia.getId()))
-						.withSelfRel())
-			);
+			materiaDto.forEach(materia -> materia.add(WebMvcLinkBuilder
+					.linkTo(WebMvcLinkBuilder.methodOn(MateriaController.class).consultarMateria(materia.getId()))
+					.withSelfRel()));
 
 			return materiaDto;
 
@@ -98,15 +96,14 @@ public class MateriaService implements IMateriaService {
 	@Override
 	public Boolean cadastrar(MateriaDto materia) {
 		try {
-			if(materia.getId() != null) {
-				throw new MateriaException(MensagensConstant.ERRO_ID_INFORMADO.getValor(),
-						HttpStatus.BAD_REQUEST);
+			if (materia.getId() != null) {
+				throw new MateriaException(MensagensConstant.ERRO_ID_INFORMADO.getValor(), HttpStatus.BAD_REQUEST);
 			}
-			
+
 			if (this.materiaRepository.findByCodigo(materia.getCodigo()) != null) {
 				throw new MateriaException(MensagensConstant.ERRO_MATERIA_CADASTRADA_ANTERIORMENTE.getValor(),
 						HttpStatus.BAD_REQUEST);
-			}			
+			}
 			return this.cadastrarOuAtualizar(materia);
 		} catch (MateriaException m) {
 			throw m;
@@ -117,16 +114,26 @@ public class MateriaService implements IMateriaService {
 
 	@Override
 	public List<MateriaDto> listarPorHorarioMinimo(int horaMinima) {
-		return this.mapper.map(this.materiaRepository.findByHoraMinima(horaMinima), new TypeToken<List<MateriaDto>>() {
-		}.getType());
+		try {
+			return this.mapper.map(this.materiaRepository.findByHoraMinima(horaMinima),
+					new TypeToken<List<MateriaDto>>() {
+					}.getType());
+		} catch (Exception e) {
+			throw new MateriaException(MensagensConstant.ERRO_GENERICO.getValor(), HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
 
 	@Override
 	public List<MateriaDto> listarPorFrequencia(int frequencia) {
-		return this.mapper.map(this.materiaRepository.findByFrequencia(frequencia), new TypeToken<List<MateriaDto>>() {
-		}.getType());
+		try {
+			return this.mapper.map(this.materiaRepository.findByFrequencia(frequencia),
+					new TypeToken<List<MateriaDto>>() {
+					}.getType());
+		} catch (Exception e) {
+			throw new MateriaException(MensagensConstant.ERRO_GENERICO.getValor(), HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
-	
+
 	private Boolean cadastrarOuAtualizar(MateriaDto materia) {
 		MateriaEntity materiaEnt = this.mapper.map(materia, MateriaEntity.class);
 		this.materiaRepository.save(materiaEnt);

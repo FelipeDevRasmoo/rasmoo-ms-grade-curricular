@@ -43,7 +43,7 @@ private static final long serialVersionUID = -5115709874529054925L;
 	@Column(name = "cod")
 	private String codigo;
 	
-	@ManyToMany(fetch = FetchType.LAZY)
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinColumn(name="materia_id")
 	private List<MateriaEntity> materias;
 }

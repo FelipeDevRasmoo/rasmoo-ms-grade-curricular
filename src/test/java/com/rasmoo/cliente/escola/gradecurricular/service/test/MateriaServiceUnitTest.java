@@ -70,7 +70,7 @@ public class MateriaServiceUnitTest {
 		assertNotNull(listMateriaDto);
 		assertEquals("ILP", listMateriaDto.get(0).getCodigo());
 		assertEquals(1, listMateriaDto.get(0).getId());
-		assertEquals("/materia/1", listMateriaDto.get(0).getLinks().getRequiredLink("self").getHref());
+		assertEquals("/v1/materia/1", listMateriaDto.get(0).getLinks().getRequiredLink("self").getHref());
 		assertEquals(1, listMateriaDto.size());
 
 		Mockito.verify(this.materiaRepository, times(1)).findAll();

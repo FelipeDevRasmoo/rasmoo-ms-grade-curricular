@@ -29,8 +29,8 @@ public class SwaggerConfig extends WebMvcConfigurationSupport {
 
 	@Bean
 	public Docket gradeCurricularApi() {
-		return new Docket(DocumentationType.SWAGGER_2).useDefaultResponseMessages(false).select()
-				.apis(RequestHandlerSelectors.basePackage("com.rasmoo.cliente.escola.gradecurricular")).build()
+		return new Docket(DocumentationType.SWAGGER_2).useDefaultResponseMessages(false).groupName("v1").select()
+				.apis(RequestHandlerSelectors.basePackage("com.rasmoo.cliente.escola.gradecurricular.v1")).build()
 				.apiInfo(this.metaData()).tags(new Tag(CURSO, "Operações referentes a manipulação da entidade Curso."))
 				.tags(new Tag(MATERIA, "Operações referentes a manipulação da entidade Materia."));
 	}

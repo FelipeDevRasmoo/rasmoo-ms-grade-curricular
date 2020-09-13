@@ -21,12 +21,12 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.HttpStatus;
 
-import com.rasmoo.cliente.escola.gradecurricular.constant.MensagensConstant;
-import com.rasmoo.cliente.escola.gradecurricular.dto.MateriaDto;
 import com.rasmoo.cliente.escola.gradecurricular.entity.MateriaEntity;
-import com.rasmoo.cliente.escola.gradecurricular.exception.MateriaException;
 import com.rasmoo.cliente.escola.gradecurricular.repository.IMateriaRepository;
-import com.rasmoo.cliente.escola.gradecurricular.service.MateriaService;
+import com.rasmoo.cliente.escola.gradecurricular.v1.constant.MensagensConstant;
+import com.rasmoo.cliente.escola.gradecurricular.v1.dto.MateriaDto;
+import com.rasmoo.cliente.escola.gradecurricular.v1.exception.MateriaException;
+import com.rasmoo.cliente.escola.gradecurricular.v1.service.MateriaService;
 
 @ExtendWith(MockitoExtension.class)
 @RunWith(JUnitPlatform.class)

@@ -24,10 +24,10 @@ import org.springframework.http.ResponseEntity;
 
 import com.rasmoo.cliente.escola.gradecurricular.entity.CursoEntity;
 import com.rasmoo.cliente.escola.gradecurricular.entity.MateriaEntity;
-import com.rasmoo.cliente.escola.gradecurricular.model.CursoModel;
-import com.rasmoo.cliente.escola.gradecurricular.model.Response;
 import com.rasmoo.cliente.escola.gradecurricular.repository.ICursoRepository;
 import com.rasmoo.cliente.escola.gradecurricular.repository.IMateriaRepository;
+import com.rasmoo.cliente.escola.gradecurricular.v1.model.CursoModel;
+import com.rasmoo.cliente.escola.gradecurricular.v1.model.Response;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @RunWith(JUnitPlatform.class)
@@ -58,7 +58,7 @@ public class CursoControllerIntegratedTest {
 	}
 
 	private String montaUri(String urn) {
-		return "http://localhost:" + this.port + "/curso/" + urn;
+		return "http://localhost:" + this.port + "/v1/curso/" + urn;
 	}
 
 	private void montaMateriaBaseDeDados() {

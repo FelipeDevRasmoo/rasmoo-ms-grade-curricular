@@ -1,4 +1,4 @@
-package com.rasmoo.cliente.escola.gradecurricular.model;
+package com.rasmoo.cliente.escola.gradecurricular.v1.model;
 
 import java.util.List;
 

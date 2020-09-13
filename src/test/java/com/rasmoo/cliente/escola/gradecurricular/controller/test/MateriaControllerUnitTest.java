@@ -24,9 +24,9 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 
-import com.rasmoo.cliente.escola.gradecurricular.dto.MateriaDto;
-import com.rasmoo.cliente.escola.gradecurricular.model.Response;
-import com.rasmoo.cliente.escola.gradecurricular.service.IMateriaService;
+import com.rasmoo.cliente.escola.gradecurricular.v1.dto.MateriaDto;
+import com.rasmoo.cliente.escola.gradecurricular.v1.model.Response;
+import com.rasmoo.cliente.escola.gradecurricular.v1.service.IMateriaService;
 
 @ExtendWith(MockitoExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -61,7 +61,7 @@ public class MateriaControllerUnitTest {
 		Mockito.when(this.materiaService.listar()).thenReturn(new ArrayList<MateriaDto>());
 
 		ResponseEntity<Response<List<MateriaDto>>> materias = restTemplate.exchange(
-				"http://localhost:" + this.port + "/materia/", HttpMethod.GET, null,
+				"http://localhost:" + this.port + "/v1/materia/", HttpMethod.GET, null,
 				new ParameterizedTypeReference<Response<List<MateriaDto>>>() {
 				});
 		assertNotNull(materias.getBody().getData());
@@ -73,7 +73,7 @@ public class MateriaControllerUnitTest {
 		Mockito.when(this.materiaService.consultar(1L)).thenReturn(materiaDto);
 
 		ResponseEntity<Response<MateriaDto>> materias = restTemplate.exchange(
-				"http://localhost:" + this.port + "/materia/1", HttpMethod.GET, null,
+				"http://localhost:" + this.port + "/v1/materia/1", HttpMethod.GET, null,
 				new ParameterizedTypeReference<Response<MateriaDto>>() {
 				});
 		assertNotNull(materias.getBody().getData());
@@ -87,7 +87,7 @@ public class MateriaControllerUnitTest {
 		HttpEntity<MateriaDto> request = new HttpEntity<>(materiaDto);
 
 		ResponseEntity<Response<Boolean>> materias = restTemplate.exchange(
-				"http://localhost:" + this.port + "/materia/", HttpMethod.POST, request,
+				"http://localhost:" + this.port + "/v1/materia/", HttpMethod.POST, request,
 				new ParameterizedTypeReference<Response<Boolean>>() {
 				});
 		assertTrue(materias.getBody().getData());
@@ -101,7 +101,7 @@ public class MateriaControllerUnitTest {
 		HttpEntity<MateriaDto> request = new HttpEntity<>(materiaDto);
 
 		ResponseEntity<Response<Boolean>> materias = restTemplate.exchange(
-				"http://localhost:" + this.port + "/materia/", HttpMethod.PUT, request,
+				"http://localhost:" + this.port + "/v1/materia/", HttpMethod.PUT, request,
 				new ParameterizedTypeReference<Response<Boolean>>() {
 				});
 		assertTrue(materias.getBody().getData());
@@ -113,7 +113,7 @@ public class MateriaControllerUnitTest {
 		Mockito.when(this.materiaService.excluir(1L)).thenReturn(Boolean.TRUE);
 
 		ResponseEntity<Response<Boolean>> materias = restTemplate.exchange(
-				"http://localhost:" + this.port + "/materia/1", HttpMethod.DELETE, null,
+				"http://localhost:" + this.port + "/v1/materia/1", HttpMethod.DELETE, null,
 				new ParameterizedTypeReference<Response<Boolean>>() {
 				});
 		assertTrue(materias.getBody().getData());
@@ -125,7 +125,7 @@ public class MateriaControllerUnitTest {
 		Mockito.when(this.materiaService.listarPorHorarioMinimo(64)).thenReturn(new ArrayList<MateriaDto>());
 
 		ResponseEntity<Response<List<MateriaDto>>> materias = restTemplate.exchange(
-				"http://localhost:" + this.port + "/materia/horario-minimo/64", HttpMethod.GET, null,
+				"http://localhost:" + this.port + "/v1/materia/horario-minimo/64", HttpMethod.GET, null,
 				new ParameterizedTypeReference<Response<List<MateriaDto>>>() {
 				});
 		assertNotNull(materias.getBody().getData());
@@ -137,7 +137,7 @@ public class MateriaControllerUnitTest {
 		Mockito.when(this.materiaService.listarPorFrequencia(1)).thenReturn(new ArrayList<MateriaDto>());
 
 		ResponseEntity<Response<List<MateriaDto>>> materias = restTemplate.exchange(
-				"http://localhost:" + this.port + "/materia/frequencia/1", HttpMethod.GET, null,
+				"http://localhost:" + this.port + "/v1/materia/frequencia/1", HttpMethod.GET, null,
 				new ParameterizedTypeReference<Response<List<MateriaDto>>>() {
 				});
 		assertNotNull(materias.getBody().getData());

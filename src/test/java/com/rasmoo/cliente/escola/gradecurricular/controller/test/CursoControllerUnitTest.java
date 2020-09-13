@@ -26,9 +26,9 @@ import org.springframework.http.ResponseEntity;
 
 import com.rasmoo.cliente.escola.gradecurricular.entity.CursoEntity;
 import com.rasmoo.cliente.escola.gradecurricular.entity.MateriaEntity;
-import com.rasmoo.cliente.escola.gradecurricular.model.CursoModel;
-import com.rasmoo.cliente.escola.gradecurricular.model.Response;
-import com.rasmoo.cliente.escola.gradecurricular.service.ICursoService;
+import com.rasmoo.cliente.escola.gradecurricular.v1.model.CursoModel;
+import com.rasmoo.cliente.escola.gradecurricular.v1.model.Response;
+import com.rasmoo.cliente.escola.gradecurricular.v1.service.ICursoService;
 
 @ExtendWith(MockitoExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -57,7 +57,7 @@ public class CursoControllerUnitTest {
 	}
 	
 	private String montaUri(String urn) {
-		return "http://localhost:" + this.port + "/curso/"+urn;
+		return "http://localhost:" + this.port + "/v1/curso/"+urn;
 	}
 
 	@Test

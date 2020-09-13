@@ -21,10 +21,10 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 
-import com.rasmoo.cliente.escola.gradecurricular.dto.MateriaDto;
 import com.rasmoo.cliente.escola.gradecurricular.entity.MateriaEntity;
-import com.rasmoo.cliente.escola.gradecurricular.model.Response;
 import com.rasmoo.cliente.escola.gradecurricular.repository.IMateriaRepository;
+import com.rasmoo.cliente.escola.gradecurricular.v1.dto.MateriaDto;
+import com.rasmoo.cliente.escola.gradecurricular.v1.model.Response;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @RunWith(JUnitPlatform.class)
@@ -81,7 +81,7 @@ public class MateriaControllerIntegratedTest {
 	public void testListarMaterias() {
 
 		ResponseEntity<Response<List<MateriaDto>>> materias = restTemplate.exchange(
-				"http://localhost:" + this.port + "/materia/", HttpMethod.GET, null,
+				"http://localhost:" + this.port + "/v1/materia/", HttpMethod.GET, null,
 				new ParameterizedTypeReference<Response<List<MateriaDto>>>() {
 				});
 		assertNotNull(materias.getBody().getData());
@@ -95,7 +95,7 @@ public class MateriaControllerIntegratedTest {
 	public void testConsultarMateriasPorHoraMinima() {
 
 		ResponseEntity<Response<List<MateriaDto>>> materias = restTemplate.exchange(
-				"http://localhost:" + this.port + "/materia/horario-minimo/80", HttpMethod.GET, null,
+				"http://localhost:" + this.port + "/v1/materia/horario-minimo/80", HttpMethod.GET, null,
 				new ParameterizedTypeReference<Response<List<MateriaDto>>>() {
 				});
 		assertNotNull(materias.getBody().getData());
@@ -107,7 +107,7 @@ public class MateriaControllerIntegratedTest {
 	public void testConsultarMateriasPorFrequencia() {
 
 		ResponseEntity<Response<List<MateriaDto>>> materias = restTemplate.exchange(
-				"http://localhost:" + this.port + "/materia/frequencia/1", HttpMethod.GET, null,
+				"http://localhost:" + this.port + "/v1/materia/frequencia/1", HttpMethod.GET, null,
 				new ParameterizedTypeReference<Response<List<MateriaDto>>>() {
 				});
 		assertNotNull(materias.getBody().getData());
@@ -123,7 +123,7 @@ public class MateriaControllerIntegratedTest {
 		Long id = materiasList.get(0).getId();
 		
 		ResponseEntity<Response<MateriaDto>> materias = restTemplate.exchange(
-				"http://localhost:" + this.port + "/materia/"+id, HttpMethod.GET, null,
+				"http://localhost:" + this.port + "/v1/materia/"+id, HttpMethod.GET, null,
 				new ParameterizedTypeReference<Response<MateriaDto>>() {
 				});
 		assertNotNull(materias.getBody().getData());
@@ -144,7 +144,7 @@ public class MateriaControllerIntegratedTest {
 		HttpEntity<MateriaEntity> request = new HttpEntity<>(materia);
 		
 		ResponseEntity<Response<Boolean>> materias = restTemplate.exchange(
-				"http://localhost:" + this.port + "/materia/", HttpMethod.PUT, request,
+				"http://localhost:" + this.port + "/v1/materia/", HttpMethod.PUT, request,
 				new ParameterizedTypeReference<Response<Boolean>>() {
 				});
 		MateriaEntity materiaAtualizada = this.materiaRepository.findById(materia.getId()).get();
@@ -166,7 +166,7 @@ public class MateriaControllerIntegratedTest {
 		HttpEntity<MateriaEntity> request = new HttpEntity<>(m4);
 		
 		ResponseEntity<Response<Boolean>> materias = restTemplate.exchange(
-				"http://localhost:" + this.port + "/materia/", HttpMethod.POST, request,
+				"http://localhost:" + this.port + "/v1/materia/", HttpMethod.POST, request,
 				new ParameterizedTypeReference<Response<Boolean>>() {
 				});
 		List<MateriaEntity> listMateriaAtualizada = this.materiaRepository.findAll();
@@ -183,7 +183,7 @@ public class MateriaControllerIntegratedTest {
 		Long id = materiasList.get(0).getId();
 		
 		ResponseEntity<Response<Boolean>> materias = restTemplate.exchange(
-				"http://localhost:" + this.port + "/materia/"+id, HttpMethod.DELETE, null,
+				"http://localhost:" + this.port + "/v1/materia/"+id, HttpMethod.DELETE, null,
 				new ParameterizedTypeReference<Response<Boolean>>() {
 				});
 		

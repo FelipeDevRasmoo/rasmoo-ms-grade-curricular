@@ -1,4 +1,4 @@
-package com.rasmoo.cliente.escola.gradecurricular.controller;
+package com.rasmoo.cliente.escola.gradecurricular.v1.controller;
 
 import java.util.List;
 
@@ -18,9 +18,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.rasmoo.cliente.escola.gradecurricular.config.SwaggerConfig;
 import com.rasmoo.cliente.escola.gradecurricular.entity.CursoEntity;
-import com.rasmoo.cliente.escola.gradecurricular.model.CursoModel;
-import com.rasmoo.cliente.escola.gradecurricular.model.Response;
-import com.rasmoo.cliente.escola.gradecurricular.service.ICursoService;
+import com.rasmoo.cliente.escola.gradecurricular.v1.model.CursoModel;
+import com.rasmoo.cliente.escola.gradecurricular.v1.model.Response;
+import com.rasmoo.cliente.escola.gradecurricular.v1.service.ICursoService;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -29,7 +29,7 @@ import io.swagger.annotations.ApiResponses;
 
 @Api(tags = SwaggerConfig.CURSO)
 @RestController
-@RequestMapping("/curso")
+@RequestMapping("/v1/curso")
 public class CursoController {
 
 	@Autowired
